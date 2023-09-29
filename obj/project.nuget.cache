@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "2bJr2Pw2x2CBg8ekCM/nvr4P0QkyEx2nRihlNya1jfzBShK+bUl9jy2fTbRVbbDxUBH4rUZdrotXQOjwThQgCw==",
+  "success": true,
+  "projectFilePath": "/Users/nikitakrutov/Desktop/BBI-23-6/ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "/Users/nikitakrutov/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "/Users/nikitakrutov/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.32/microsoft.netcore.app.host.osx-x64.3.1.32.nupkg.sha512",
+    "/Users/nikitakrutov/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
