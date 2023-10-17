@@ -5,6 +5,7 @@ namespace ConsoleApp1
     internal class Program
     {
         private static int n;
+        private static double s;
         public static double factorial(double xo)
         {
             if (xo == 1 ^ xo == 0)
@@ -34,20 +35,21 @@ namespace ConsoleApp1
             Console.WriteLine($"1.2: {s}");
             Console.WriteLine();
 
-            s = 0;
-            for (double i = 2; i <= 112; i++)
+            double s3 = 0;
+            for (double i = 2; i <= 112; i += 2)
             {
-                s += i / (i + 1);
+                s3 += i / (i + 1);
             }
-            Console.WriteLine($"1.3: {s}");
+            Console.WriteLine($"1.3: {s3}");
             Console.WriteLine();
 
             s = 0;
-            Console.WriteLine("Введите x: ");
-            double xo = Convert.ToDouble(Console.ReadLine());
+            double x = 12;
+            double d = 1;
             for (double i = 1; i <= 9; i++)
             {
-                s += Math.Cos(i * xo) / Math.Pow(xo, i);
+                s = s + (Math.Cos(i * x) / d);
+                d = d * x;
             }
             Console.WriteLine($"1_4: {s}");
             Console.WriteLine();
@@ -95,13 +97,11 @@ namespace ConsoleApp1
             Console.WriteLine();
 
             s = 0;
-            k = 1;
-            int z = -1;
-            for (double i = 1; i <= 6; i++)
+            double a = 0;
+            for (int i = 1; i <= 6; i++)
             {
-                k *= i;
-                s += z * Math.Pow(5, i) / k;
-                z *= -1;
+                a = (-1) * a * 5 / i;
+                s = s + a;
             }
             Console.WriteLine($"1.9: {s}");
             Console.WriteLine();
@@ -125,13 +125,13 @@ namespace ConsoleApp1
                 Console.Write("5 ");
             }
             Console.WriteLine("\n");
-
+            
             s = 0;
-            Console.WriteLine("Введите x:");
-            double x = Convert.ToDouble(Console.ReadLine());
-            for (double i = 0; i <= 10; i++)
+            x = Convert.ToDouble(Console.ReadLine());
+            for (int i = 0; i <= 10; i++)
             {
-                s += 1 / Math.Pow(x, i);
+                a = a / x;
+                s = s + x;
             }
             Console.WriteLine($"1.12: {s}");
             Console.WriteLine();
@@ -159,14 +159,14 @@ namespace ConsoleApp1
             Console.WriteLine();
 
             Console.WriteLine("1.14:");
-            double a = 1;
+            double a9 = 1;
             double b = 1;
             double c;
             Console.Write("1 1 ");
-            for (double t = 1; t <= 6; t++)
+            for (double i = 1; i <= 6; i++)
             {
-                c = a + b;
-                a = b;
+                c = a9 + b;
+                a9 = b;
                 b = c;
                 Console.Write($"{b} ");
             }
@@ -205,15 +205,16 @@ namespace ConsoleApp1
             Console.WriteLine();
 
             int L = 30000;
+            int n = 1;
             int o = 1;
-            int e = 1;
 
-            while (e <= L)
+            while (o <= L)
             {
-                o += 3;
-                e *= o;
-            };
-            Console.WriteLine($"2.2: {o - 1}");
+                n++;
+                o *= n;
+            }
+            n--;
+            Console.WriteLine($"2.2: {n}");
             Console.WriteLine();
 
             s = 0;
@@ -236,11 +237,11 @@ namespace ConsoleApp1
             Console.WriteLine("Введите x: |x| < 1)");
             double x1 = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine();
-            double d = 1;
-            while (d >= 0.0001)
+            double t = 1;
+            while (t >= 0.0001)
             {
-                s += d;
-                d *= x1 * x1;
+                s += t;
+                t *= x1 * x1;
             }
             Console.WriteLine($"2.4: {s}");
             Console.WriteLine();
@@ -260,7 +261,7 @@ namespace ConsoleApp1
             Console.WriteLine();
 
             string except = "не выполнять";
-            Console.WriteLine($"2.6: {e}");
+            Console.WriteLine($"2.6: {except}");
             Console.WriteLine();
 
             double dayly = 10;
