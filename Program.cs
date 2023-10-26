@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    internal class Program
+    internal class Program1
     {
         private static int n;
         private static double s;
@@ -15,7 +15,7 @@ namespace ConsoleApp1
             else return xo * factorial(xo - 1);
         }
 
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             double s = 0;
             Console.WriteLine();
