@@ -312,7 +312,7 @@ class Program
         //    Console.WriteLine($"{x[i]}\t{y[i]}");
         //}
 
-        int[] array = { 3, 6, -2, 9, 4, -5, 1, 8, -7, 0 };
+        //int[] array = { 3, 6, -2, 9, 4, -5, 1, 8, -7, 0 };
 
         //Console.WriteLine("2.1: ");
         //int minIndex = 0;
@@ -568,6 +568,7 @@ class Program
 
         //Console.WriteLine("2.11: ");
         //int p = 99;
+        //int[] array = { 1, 2, 3, 4, 5 };
         //int lastPositiveIndex = -1;
         //for (int i = array.Length - 1; i >= 0; i--)
         //{
@@ -577,12 +578,19 @@ class Program
         //        break;
         //    }
         //}
-        //if (lastPositiveIndex != -1) { 
-        //    for (int i = array.Length - 1; i > lastPositiveIndex; i--)
+        //if (lastPositiveIndex != -1)
+        //{
+        //    int[] newArray = new int[array.Length + 1];
+        //    for (int i = 0; i <= lastPositiveIndex; i++)
         //    {
-        //        array[i] = array[i - 1];
+        //        newArray[i] = array[i];
         //    }
-        //    array[lastPositiveIndex + 1] = p;
+        //    newArray[lastPositiveIndex + 1] = p;
+        //    for (int i = lastPositiveIndex + 1; i < array.Length; i++)
+        //    {
+        //        newArray[i + 1] = array[i];
+        //    }
+        //    array = newArray;
         //    foreach (int element in array)
         //    {
         //        Console.Write(element + " ");
@@ -590,6 +598,7 @@ class Program
         //}
 
         //Console.WriteLine("2.12: ");
+        //int[] array = { 1, 2, 3, 4, 5 };
         //int otrValueIndex = -1;
         //for (int i = 0; i < array.Length; i++)
         //{
@@ -599,23 +608,32 @@ class Program
         //        break;
         //    }
         //}
-        //int maxValue = int.MinValue;
-        //int sum = 0;
-        //int maxValueIndex = -1;
-        //for (int i = 0; i < array.Length; i++)
+        //if (otrValueIndex != -1)
         //{
-        //    if (array[i] > maxValue)
+        //    int maxValue = int.MinValue;
+        //    int sum = 0;
+        //    int maxValueIndex = -1;
+        //    for (int i = 0; i < array.Length; i++)
         //    {
-        //        maxValue = array[i];
-        //        maxValueIndex = i;
+        //        if (array[i] > maxValue)
+        //        {
+        //            maxValue = array[i];
+        //            maxValueIndex = i;
+        //        }
+        //    }
+        //    if (maxValueIndex != -1 && maxValueIndex < array.Length - 1)
+        //    {
+        //        for (int i = maxValueIndex + 1; i < array.Length; i++)
+        //        {
+        //            sum += array[i];
+        //        }
+        //        array[otrValueIndex] = sum;
         //    }
         //}
-        //for (int i = maxValueIndex + 1; i < array.Length; i++)
+        //foreach (int element in array)
         //{
-        //    sum += array[i];
+        //    Console.Write(element + " ");
         //}
-        //array[otrValueIndex] = sum;
-        //printArray(array);
 
         //Console.WriteLine("2.13: ");
         //int maxEven = int.MinValue;
@@ -632,6 +650,7 @@ class Program
         //printArray(array);
 
         //Console.WriteLine("2.14: ");
+        //int[] array = { 1, 2, 3, 4, 5 };
         //int maxValue = int.MinValue;
         //int maxIndex = -1;
         //for (int i = 0; i < array.Length; i++)
@@ -651,30 +670,43 @@ class Program
         //        break;
         //    }
         //}
-        //int temp = array[maxIndex];
-        //array[maxIndex] = array[firstNegativeIndex];
-        //array[firstNegativeIndex] = temp;
+        //if (maxIndex != -1 && firstNegativeIndex != -1)
+        //{
+        //    int temp = array[maxIndex];
+        //    array[maxIndex] = array[firstNegativeIndex];
+        //    array[firstNegativeIndex] = temp;
+        //}
         //printArray(array);
 
         //Console.WriteLine("2.15: ");
-        //int[] A = { 3, 5, -2, 8, 7 };
-        //int[] B = { 1, 2, 3 };
-        //int k = 2;
-        //int[] result = new int[A.Length + B.Length];
-        //for (int i = 0; i <= k; i++)
+        //int n = 1;
+        //int m = 2;
+
+        //int[] A = new int[] { 9 };
+        //int[] B = new int[] { 7, 8 };
+        //int k = 1;
+
+        //int[] result = new int[n + m];
+
+        //for (int i = 0; i <= k && i < n; i++)
         //{
         //    result[i] = A[i];
         //}
-        //for (int i = 0; i < B.Length; i++)
+
+        //for (int i = 0; i < m; i++)
         //{
         //    result[k + i + 1] = B[i];
         //}
-        //for (int i = k + 1; i < A.Length; i++)
+
+        //for (int i = k + 1; i < n; i++)
         //{
-        //    result[i + B.Length] = A[i];
+        //    result[i + m] = A[i];
         //}
-        //A = result;
-        //printArray(A);
+
+        //foreach (int num in result)
+        //{
+        //    Console.Write(num + " ");
+        //}
 
         //Console.WriteLine("2.16: ");
         //double average = 0;
@@ -843,67 +875,68 @@ class Program
         //}
         //Console.WriteLine(sum);
 
-        //Console.WriteLine("3.1: ");
-        //int max = int.MinValue;
-        //foreach (int num in array)
-        //{
-        //    if (num > max)
-        //    {
-        //        max = num;
-        //    }
-        //}
-        //int count = 0;
-        //for (int i = 0; i < array.Length; i++)
-        //{
-        //    if (array[i] == max)
-        //    {
-        //        count++;
-        //    }
-        //}
-        //int[] maxIndexes = new int[count];
-        //int index = 0;
-        //for (int i = 0; i < array.Length; i++)
-        //{
-        //    if (array[i] == max)
-        //    {
-        //        maxIndexes[index] = i;
-        //        index++;
-        //    }
-        //}
-        //foreach (int idx in maxIndexes)
-        //{
-        //    Console.Write(idx + " ");
-        //}
+        Console.WriteLine("3.1: ");
+        int[] array = { 4, 2, 6, 7, 4, 9, 7 };
+        int max = int.MinValue;
+        int count = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > max)
+            {
+                max = array[i];
+                count = 1;
+            }
+            else if (array[i] == max)
+            {
+                count++;
+            }
+        }
+        int[] maxIndexes = new int[count];
+        int index = 0;
 
-        //Console.WriteLine("3.2: ");
-        //int max = int.MinValue;
-        //foreach (int num in array)
-        //{
-        //    if (num > max)
-        //    {
-        //        max = num;
-        //    }
-        //}
-        //int count = 0;
-        //foreach (int num in array)
-        //{
-        //    if (num == max)
-        //    {
-        //        count++;
-        //    }
-        //}
-        //int order = 1;
-        //for (int i = 0; i < array.Length; i++)
-        //{
-        //    if (array[i] == max)
-        //    {
-        //        array[i] += order;
-        //        order++;
-        //    }
-        //}
-        //foreach (int element in array)
-        //{
-        //    Console.Write(element + " ");
-        //}
-    }
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == max)
+            {
+                maxIndexes[index] = i;
+                index++;
+            }
+        }
+        foreach (int idx in maxIndexes)
+        {
+            Console.Write(idx + " ");
+        }
+
+
+    //Console.WriteLine("3.2: ");
+    //int max = int.MinValue;
+    //foreach (int num in array)
+    //{
+    //    if (num > max)
+    //    {
+    //        max = num;
+    //    }
+    //}
+    //int count = 0;
+    //foreach (int num in array)
+    //{
+    //    if (num == max)
+    //    {
+    //        count++;
+    //    }
+    //}
+    //int order = 1;
+    //for (int i = 0; i < array.Length; i++)
+    //{
+    //    if (array[i] == max)
+    //    {
+    //        array[i] += order;
+    //        order++;
+    //    }
+    //}
+    //foreach (int element in array)
+    //{
+    //    Console.Write(element + " ");
+    //}
+}
 }
