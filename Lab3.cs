@@ -875,68 +875,68 @@ class Program
         //}
         //Console.WriteLine(sum);
 
-        Console.WriteLine("3.1: ");
-        int[] array = { 4, 2, 6, 7, 4, 9, 7 };
-        int max = int.MinValue;
-        int count = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] > max)
-            {
-                max = array[i];
-                count = 1;
-            }
-            else if (array[i] == max)
-            {
-                count++;
-            }
-        }
-        int[] maxIndexes = new int[count];
-        int index = 0;
+        //Console.WriteLine("3.1: ");
+        //int[] array = { 4, 2, 6, 7, 4, 9, 7 };
+        //int max = int.MinValue;
+        //int count = 0;
+        //for (int i = 0; i < array.Length; i++)
+        //{
+        //    if (array[i] > max)
+        //    {
+        //        max = array[i];
+        //        count = 1;
+        //    }
+        //    else if (array[i] == max)
+        //    {
+        //        count++;
+        //    }
+        //}
+        //int[] maxIndexes = new int[count];
+        //int index = 0;
 
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] == max)
-            {
-                maxIndexes[index] = i;
-                index++;
-            }
-        }
-        foreach (int idx in maxIndexes)
-        {
-            Console.Write(idx + " ");
-        }
+        //for (int i = 0; i < array.Length; i++)
+        //{
+        //    if (array[i] == max)
+        //    {
+        //        maxIndexes[index] = i;
+        //        index++;
+        //    }
+        //}
+        //foreach (int idx in maxIndexes)
+        //{
+        //    Console.Write(idx + " ");
+        //}
 
 
-    //Console.WriteLine("3.2: ");
-    //int max = int.MinValue;
-    //foreach (int num in array)
-    //{
-    //    if (num > max)
-    //    {
-    //        max = num;
-    //    }
-    //}
-    //int count = 0;
-    //foreach (int num in array)
-    //{
-    //    if (num == max)
-    //    {
-    //        count++;
-    //    }
-    //}
-    //int order = 1;
-    //for (int i = 0; i < array.Length; i++)
-    //{
-    //    if (array[i] == max)
-    //    {
-    //        array[i] += order;
-    //        order++;
-    //    }
-    //}
-    //foreach (int element in array)
-    //{
-    //    Console.Write(element + " ");
-    //}
-}
+        //Console.WriteLine("3.2: ");
+        //int max = int.MinValue;
+        //foreach (int num in array)
+        //{
+        //    if (num > max)
+        //    {
+        //        max = num;
+        //    }
+        //}
+        //int count = 0;
+        //foreach (int num in array)
+        //{
+        //    if (num == max)
+        //    {
+        //        count++;
+        //    }
+        //}
+        //int order = 1;
+        //for (int i = 0; i < array.Length; i++)
+        //{
+        //    if (array[i] == max)
+        //    {
+        //        array[i] += order;
+        //        order++;
+        //    }
+        //}
+        //foreach (int element in array)
+        //{
+        //    Console.Write(element + " ");
+        //}
+    }
 }
