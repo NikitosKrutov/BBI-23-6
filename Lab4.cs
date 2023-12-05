@@ -394,69 +394,91 @@ class Program
         //PrintMa(matrixA);
 
         //2.7
-        //int[,] matrixA = new int[6, 6];
-        //Random random = new Random();
-
+        //int[,] A = new int[6, 6]
+        //{
+        //    {1,2,3,4,5,6},
+        //    {7,8,9,10,11,12},
+        //    {13,14,155,16,17,18 },
+        //    {19,20,21,22,23,24},
+        //    {25,26,27,28,29,30},
+        //    {31,32,33,34,35,36}
+        //};
+        //int max = A[0, 0];
+        //int imax = 0;
+        //for (int i = 0; i < 6; i++)
+        //{
+        //    if (A[i,i]> max)
+        //    {
+        //        max = A[i,i];
+        //        imax = i;
+        //    }
+        //}
+        //for (int i = 0;i < imax; i++)
+        //{
+        //    for (int j = imax + 1;j < 6; j++)
+        //    {
+        //        A[i, j] = 0;
+        //    }
+        //}
         //for (int i = 0; i < 6; i++)
         //{
         //    for (int j = 0; j < 6; j++)
         //    {
-        //        matrixA[i, j] = random.Next(1, 100);
+        //        Console.Write(A[i, j]+" ");
         //    }
+        //    Console.WriteLine();
         //}
 
-        //Console.WriteLine("Исходная матрица A:");
-        //PrintMa(matrixA);
+        //3.10
+        //int[,] A = new int[5, 3]
+        //    {
+        //        { 5, 8, 3 },
+        //        { 4, 9, 1 },
+        //        { 6, 7, 2 },
+        //        { 8, 9, 3 },
+        //        { 10, 11, 4 }
+        //    };
 
-        //int maxDiagonalElement = FindMaxDiagonalElement(matrixA);
-        //ReplaceElementsWithZeros(matrixA, maxDiagonalElement);
-
-        //Console.WriteLine("\nМатрица A после замены:");
-        //PrintMa(matrixA);
-
-        //3.3
-        //int n = Int32.Parse(Console.ReadLine());
-        //if (n > 0)
+        //for (int i = 0; i < 5; i++)
         //{
-        //    double[,] a = new double[n, n];
-        //    double[] b = new double[2 * n - 1];
-        //    double sum = 0;
+        //    if (i % 2 == 0)
+        //    {
+        //        for (int j = 0; j < 3; j++)
+        //        {
+        //            for (int k = j + 1; k < 3; k++)
+        //            {
+        //                if (A[i, j] < A[i, k])
+        //                {
+        //                    int temp = A[i, j];
+        //                    A[i, j] = A[i, k];
+        //                    A[i, k] = temp;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        for (int j = 0; j < 3; j++)
+        //        {
+        //            for (int k = j + 1; k < 3; k++)
+        //            {
+        //                if (A[i, j] > A[i, k])
+        //                {
+        //                    int temp = A[i, j];
+        //                    A[i, j] = A[i, k];
+        //                    A[i, k] = temp;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    for (int j = 0; j < 3; j++)
+        //    {
+        //        Console.Write(A[i, j] + " ");
+        //    }
         //    Console.WriteLine();
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        for (int j = 0; j < n; j++)
-        //        {
-        //            Console.WriteLine("[" + i + "," + j + "]");
-        //            a[i, j] = Double.Parse(Console.ReadLine());
-        //        }
-        //        Console.WriteLine();
-        //    }
-        //    Console.WriteLine();
-        //    int index = 0;
-        //    for (int i = n - 1; i > -1; i--)
-        //    {
-        //        for (int j = 0; j < n - i; j++)
-        //        {
-        //            sum += a[i + j, j];
-        //        }
-        //        b[index] = sum;
-        //        index++;
-        //        sum = 0;
-        //    }
-        //    for (int j = 1; j < n; j++)
-        //    {
-        //        for (int i = 0; i < n - j; i++)
-        //        {
-        //            sum += a[i, j + i];
-        //        }
-        //        b[index] = sum;
-        //        index++;
-        //        sum = 0;
-        //    }
-        //    for (int i = 0; i < 2 * n - 1; i++)
-        //    {
-        //        Console.Write(b[i] + " ");
-        //    }
         //}
 
         //3.4
@@ -482,4 +504,4 @@ class Program
         //    Console.WriteLine();
         //}
     }
-}  
+}
