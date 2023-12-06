@@ -394,37 +394,48 @@ class Program
         //PrintMa(matrixA);
 
         //2.7
-        //int[,] A = new int[6, 6]
+        //string s;
+        //int n = 6;
+        //int[,] a = new int[n, n];
+        //Console.WriteLine("Введите элементы матрицы");
+        //for (int i = 0; i < n; i++)
         //{
-        //    {1,2,3,4,5,6},
-        //    {7,8,9,10,11,12},
-        //    {13,14,155,16,17,18 },
-        //    {19,20,21,22,23,24},
-        //    {25,26,27,28,29,30},
-        //    {31,32,33,34,35,36}
-        //};
-        //int max = A[0, 0];
-        //int imax = 0;
-        //for (int i = 0; i < 6; i++)
-        //{
-        //    if (A[i,i]> max)
+        //    for (int j = 0; j < n; j++)
         //    {
-        //        max = A[i,i];
+        //        s = Console.ReadLine();
+        //        a[i, j] = int.Parse(s);
+        //    }
+        //}
+        //for (int i = 0; i < n; i++)
+        //{
+        //    for (int j = 0; j < n; j++)
+        //    {
+        //        Console.Write("{0,3:d} ", a[i, j]);
+        //    }
+        //    Console.WriteLine();
+        //}
+        //Console.WriteLine();
+        //int max = a[0, 0];
+        //int imax = 0;
+        //for (int i = 0; i < n; i++)
+        //    if (a[i, i] > max)
+        //    {
+        //        max = a[i, i];
         //        imax = i;
         //    }
-        //}
-        //for (int i = 0;i < imax; i++)
+        //for (int i = 0; i < imax; i++)
         //{
-        //    for (int j = imax + 1;j < 6; j++)
+        //    for (int j = i + 1; j < n; j++)
         //    {
-        //        A[i, j] = 0;
+        //        a[i, j] = 0;
         //    }
         //}
-        //for (int i = 0; i < 6; i++)
+        //Console.WriteLine("Преобразованная матрица");
+        //for (int i = 0; i < n; i++)
         //{
-        //    for (int j = 0; j < 6; j++)
+        //    for (int j = 0; j < n; j++)
         //    {
-        //        Console.Write(A[i, j]+" ");
+        //        Console.Write("{0,3} ", a[i, j]);
         //    }
         //    Console.WriteLine();
         //}
@@ -438,7 +449,6 @@ class Program
         //        { 8, 9, 3 },
         //        { 10, 11, 4 }
         //    };
-
         //for (int i = 0; i < 5; i++)
         //{
         //    if (i % 2 == 0)
