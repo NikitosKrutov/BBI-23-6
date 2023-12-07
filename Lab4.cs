@@ -513,5 +513,63 @@ class Program
         //    }
         //    Console.WriteLine();
         //}
+
+        //Console.WriteLine("Введите количество строк матрицы:");
+        //int rows = Convert.ToInt32(Console.ReadLine());
+        //Console.WriteLine("Введите количество столбцов матрицы:");
+        //int columns = Convert.ToInt32(Console.ReadLine());
+        //int[,] matrix = new int[rows, columns];
+        //for (int i = 0; i < rows; i++)
+        //{
+        //    for (int j = 0; j < columns; j++)
+        //    {
+        //        Console.Write($"Введите элемент матрицы [{i}, {j}]: ");
+        //        matrix[i, j] = Convert.ToInt32(Console.ReadLine());
+        //    }
+        //}
+
+
+        //int[] min_elements_list = new int[rows];
+        //for (int i = 0; i < rows; i++)
+        //{
+        //    int min_number = matrix[i, 0];
+        //    for (int j = 1; j < columns; j++)
+        //    {
+        //        if (matrix[i, j] < min_number)
+        //        {
+        //            min_number = matrix[i, j];
+        //        }
+        //    }
+        //    min_elements_list[i] = min_number;
+        //}
+        //for (int i = 0; i < rows; i++)
+        //{
+        //    for (int j = i + 1; j < rows; j++)
+        //    {
+        //        if (min_elements_list[j] > min_elements_list[i])
+        //        {
+        //            int c = min_elements_list[i];
+        //            min_elements_list[i] = min_elements_list[j];
+        //            min_elements_list[j] = c;
+
+        //            for (int k = 0; k < columns; k++)
+        //            {
+        //                c = matrix[i, k];
+        //                matrix[i, k] = matrix[j, k];
+        //                matrix[j, k] = c;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //for (int i = 0; i < rows; i++)
+        //{
+        //    for (int j = 0; j < columns; j++)
+        //    {
+        //        Console.Write($"{matrix[i, j]} ");
+        //    }
+        //    Console.WriteLine();
+        //}
+        //Console.ReadKey();
     }
 }
