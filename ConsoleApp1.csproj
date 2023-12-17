@@ -9,5 +9,6 @@
     <Compile Remove="Program.cs" />
     <Compile Remove="Lab2.cs" />
     <Compile Remove="Lab3.cs" />
+    <Compile Remove="Lab4.cs" />
   </ItemGroup>
 </Project>
