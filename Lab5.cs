@@ -86,25 +86,30 @@ class Program
     //9
     //static void Main()
     //{
-    //    int[,] A = GenerateRandomMatrix(6, 5);
-    //    int[,] C = GenerateRandomMatrix(7, 4);
+    //    int[,] matrixA = GenerateRandomMatrix(6, 5);
+    //    int[,] matrixC = GenerateRandomMatrix(7, 4);
 
-    //    int[] result = SumPositiveColumnElements(A, C);
+    //    int[] resultArray = CombineArrays(matrixA, matrixC);
 
     //    Console.WriteLine("Матрица A:");
-    //    PrintMatrix(A);
+    //    PrintMatrix(matrixA);
 
     //    Console.WriteLine("\nМатрица C:");
-    //    PrintMatrix(C);
+    //    PrintMatrix(matrixC);
 
-    //    Console.WriteLine("\nРезультат объединения сумм положительных элементов столбцов из матриц A и C:");
-    //    PrintArray(result);
+    //    Console.WriteLine("\nРезультат объединения массивов:");
+    //    foreach (int value in resultArray)
+    //    {
+    //        Console.Write(value + " ");
+    //    }
+
+    //    Console.ReadLine();
     //}
 
     //static int[,] GenerateRandomMatrix(int rows, int cols)
     //{
-    //    Random random = new Random();
     //    int[,] matrix = new int[rows, cols];
+    //    Random random = new Random();
 
     //    for (int i = 0; i < rows; i++)
     //    {
@@ -117,64 +122,47 @@ class Program
     //    return matrix;
     //}
 
-    //static int[] SumPositiveColumnElements(int[,] matrixA, int[,] matrixC)
-    //{
-    //    int columnsA = matrixA.GetLength(1);
-    //    int columnsC = matrixC.GetLength(1);
-    //    int maxColumns = Math.Max(columnsA, columnsC);
-
-    //    int[] result = new int[maxColumns];
-
-    //    for (int j = 0; j < maxColumns; j++)
-    //    {
-    //        int sumA = 0;
-    //        int sumC = 0;
-
-    //        if (j < columnsA)
-    //        {
-    //            for (int i = 0; i < matrixA.GetLength(0); i++)
-    //            {
-    //                if (matrixA[i, j] > 0)
-    //                {
-    //                    sumA += matrixA[i, j];
-    //                }
-    //            }
-    //        }
-
-    //        if (j < columnsC)
-    //        {
-    //            for (int i = 0; i < matrixC.GetLength(0); i++)
-    //            {
-    //                if (matrixC[i, j] > 0)
-    //                {
-    //                    sumC += matrixC[i, j];
-    //                }
-    //            }
-    //        }
-    //        result[j] = sumA + sumC;
-    //    }
-    //    return result;
-    //}
-
     //static void PrintMatrix(int[,] matrix)
     //{
     //    for (int i = 0; i < matrix.GetLength(0); i++)
     //    {
     //        for (int j = 0; j < matrix.GetLength(1); j++)
     //        {
-    //            Console.Write(matrix[i, j] + "\t");
+    //            Console.Write(matrix[i, j] + " ");
     //        }
     //        Console.WriteLine();
     //    }
     //}
 
-    //static void PrintArray(int[] array)
+    //static int[] CombineArrays(int[,] matrixA, int[,] matrixC)
     //{
-    //    foreach (int element in array)
+    //    int[] sumArrayA = CalculateColumnSums(matrixA);
+    //    int[] sumArrayC = CalculateColumnSums(matrixC);
+    //    int[] resultArray = new int[sumArrayA.Length + sumArrayC.Length];
+    //    sumArrayA.CopyTo(resultArray, 0);
+    //    sumArrayC.CopyTo(resultArray, sumArrayA.Length);
+
+    //    return resultArray;
+    //}
+
+    //static int[] CalculateColumnSums(int[,] matrix)
+    //{
+    //    int[] sums = new int[matrix.GetLength(1)];
+
+    //    for (int i = 0; i < matrix.GetLength(1); i++)
     //    {
-    //        Console.Write(element + " ");
+    //        int sum = 0;
+    //        for (int j = 0; j < matrix.GetLength(0); j++)
+    //        {
+    //            if (matrix[j, i] > 0)
+    //            {
+    //                sum += matrix[j, i];
+    //            }
+    //        }
+    //        sums[i] = sum;
     //    }
-    //    Console.WriteLine();
+
+    //    return sums;
     //}
 
     //15
@@ -187,14 +175,10 @@ class Program
     //    };
 
     //    int[,] matrix2 = {
-    //        {10, 20, 30},
-    //        {40, 50, 60},
-    //        {70, 80, 90}
+    //        {70, 90}
     //    };
 
     //    int[,] matrix3 = {
-    //        {3, 1, 4},
-    //        {1, 5, 9},
     //        {2, 6, 5}
     //    };
 
@@ -228,6 +212,9 @@ class Program
     //        sum += element;
     //        count++;
     //    }
+
+    //    if (count <= 2)
+    //        return double.NaN;
 
     //    sum = sum - min - max;
     //    count = count - 2;
