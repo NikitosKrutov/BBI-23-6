@@ -169,18 +169,18 @@ class Program
     //static void Main()
     //{
     //    int[,] matrix1 = {
-    //        {5, 2, 8},
-    //        {1, 7, 4},
-    //        {3, 6, 9}
-    //    };
+    //    {5, 2, 8},
+    //    {1, 7, 4},
+    //    {3, 6, 9}
+    //};
 
     //    int[,] matrix2 = {
-    //        {70, 90}
-    //    };
+    //    {70, 90}
+    //};
 
     //    int[,] matrix3 = {
-    //        {2, 6, 5}
-    //    };
+    //    {2, 6, 5}
+    //};
 
     //    double[] averages = new double[3];
 
@@ -213,13 +213,10 @@ class Program
     //        count++;
     //    }
 
-    //    if (count <= 2)
-    //        return double.NaN;
-
     //    sum = sum - min - max;
     //    count = count - 2;
 
-    //    double average = sum / count;
+    //    double average = count > 0 ? sum / count : 0; // Заменяем NaN на 0
     //    return average;
     //}
 
