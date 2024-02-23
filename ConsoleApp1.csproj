@@ -10,5 +10,6 @@
     <Compile Remove="Lab2.cs" />
     <Compile Remove="Lab3.cs" />
     <Compile Remove="Lab4.cs" />
+    <Compile Remove="Lab5.cs" />
   </ItemGroup>
 </Project>
