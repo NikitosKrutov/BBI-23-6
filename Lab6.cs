@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 
 //1.5
-//struct Student
+//class Student
 //{
 //    public string Name;
 //    public int Grade;
@@ -13,6 +13,16 @@ using System.Linq;
 //        Name = name;
 //        Grade = grade;
 //        Absences = absences;
+//    }
+
+//    public override string ToString()
+//    {
+//        return $"Студент: {Name}, Оценка: {Grade}, Пропущено занятий: {Absences}";
+//    }
+
+//    public void PrintInfo()
+//    {
+//        Console.WriteLine(ToString());
 //    }
 //}
 
@@ -30,38 +40,26 @@ using System.Linq;
 //            new Student("Алексей", 5, 0)
 //        };
 
-//        for (int i = 0; i < students.Length - 1; i++)
-//        {
-//            for (int j = 0; j < students.Length - 1 - i; j++)
-//            {
-//                if (students[j].Grade == 2 && students[j].Absences < students[j + 1].Absences)
-//                {
-//                    Student temp = students[j];
-//                    students[j] = students[j + 1];
-//                    students[j + 1] = temp;
-//                }
-//            }
-//        }
+//        var failingStudents = students
+//            .Where(student => student.Grade == 2)
+//            .OrderByDescending(student => student.Absences);
 
 //        Console.WriteLine("Список неуспевающих студентов в порядке убывания количества пропущенных занятий:");
-//        foreach (var student in students)
+//        foreach (var student in failingStudents)
 //        {
-//            if (student.Grade == 2)
-//            {
-//                Console.WriteLine($"{student.Name}: Оценка - {student.Grade}, Пропущено занятий - {student.Absences}");
-//            }
+//            student.PrintInfo();
 //        }
 //    }
 //}
 
 
 //2.6
-//struct Diver
+//struct Driver
 //{
 //    public string LastName;
 //    public int[] Scores;
 
-//    public Diver(string lastName, int[] scores)
+//    public Driver(string lastName, int[] scores)
 //    {
 //        LastName = lastName;
 //        Scores = scores;
@@ -76,36 +74,33 @@ using System.Linq;
 //        }
 //        return total;
 //    }
+
+//    public void PrintInfo()
+//    {
+//        Console.WriteLine($"Фамилия: {LastName}, Результаты: [{string.Join(", ", Scores)}]");
+//    }
 //}
 
 //class CompetitionProtocol
 //{
-//    private Diver[] divers;
+//    private Driver[] drivers;
 
-//    public CompetitionProtocol(Diver[] divers)
+//    public CompetitionProtocol(Driver[] drivers)
 //    {
-//        this.divers = divers;
+//        this.drivers = drivers;
 //    }
 
 //    public void GenerateProtocol()
 //    {
-//        for (int i = 0; i < divers.Length - 1; i++)
+//        // Вывод информации о каждом участнике
+//        foreach (var driver in drivers)
 //        {
-//            for (int j = 0; j < divers.Length - 1 - i; j++)
-//            {
-//                if (divers[j].TotalScore() < divers[j + 1].TotalScore())
-//                {
-//                    Diver temp = divers[j];
-//                    divers[j] = divers[j + 1];
-//                    divers[j + 1] = temp;
-//                }
-//            }
+//            driver.PrintInfo();
 //        }
-//        Console.WriteLine("Итоговый протокол соревнований:");
-//        for (int i = 0; i < divers.Length; i++)
-//        {
-//            Console.WriteLine($"{i + 1}. {divers[i].LastName}: {divers[i].TotalScore()} баллов");
-//        }
+
+//        // Определение победителя
+//        Driver winner = drivers.OrderByDescending(d => d.TotalScore()).First();
+//        Console.WriteLine($"Победитель - {winner.LastName} с общим результатом {winner.TotalScore()} баллов.");
 //    }
 //}
 
@@ -113,16 +108,16 @@ using System.Linq;
 //{
 //    static void Main(string[] args)
 //    {
-//        Diver[] divers = new Diver[]
+//        Driver[] drivers = new Driver[]
 //        {
-//            new Diver("Иванов", new int[] { 8, 9 }),
-//            new Diver("Петров", new int[] { 7, 7 }),
-//            new Diver("Сидоров", new int[] { 9, 8 }),
-//            new Diver("Козлов", new int[] { 6, 5 }),
-//            new Diver("Смирнов", new int[] { 8, 6 })
+//            new Driver("Иванов", new int[] { 8, 9 }),
+//            new Driver("Петров", new int[] { 7, 8 }),
+//            new Driver("Сидоров", new int[] { 9, 9 }),
+//            new Driver("Козлов", new int[] { 6, 7 }),
+//            new Driver("Смирнов", new int[] { 8, 8 })
 //        };
-//        CompetitionProtocol protocol = new CompetitionProtocol(divers);
 
+//        CompetitionProtocol protocol = new CompetitionProtocol(drivers);
 //        protocol.GenerateProtocol();
 //    }
 //}
@@ -149,6 +144,11 @@ using System.Linq;
 //            points += pointsByPlace[i];
 //        }
 //        return points;
+//    }
+
+//    public void PrintInfo()
+//    {
+//        Console.WriteLine($"Команда {Name} имеет результаты: [{string.Join(", ", Places)}]");
 //    }
 //}
 
@@ -178,6 +178,11 @@ using System.Linq;
 //            new Team("Команда 2", new int[] { 7, 8, 9, 10, 11, 12 }),
 //            new Team("Команда 3", new int[] { 13, 14, 15, 16, 17, 18 })
 //        };
+
+//        foreach (var team in teams)
+//        {
+//            team.PrintInfo();
+//        }
 
 //        Competition competition = new Competition(teams);
 //        competition.DetermineWinner();
