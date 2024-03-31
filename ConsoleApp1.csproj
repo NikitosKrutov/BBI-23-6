@@ -11,5 +11,8 @@
     <Compile Remove="Lab3.cs" />
     <Compile Remove="Lab4.cs" />
     <Compile Remove="Lab5.cs" />
+    <Compile Remove="Lab6.cs" />
+    <Compile Remove="CWTask1.cs" />
+    <Compile Remove="CWTask2.cs" />
   </ItemGroup>
 </Project>
