@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 
 //1.5
-//class Student
+//struct Student
 //{
-//    public string Name;
-//    public int Grade;
-//    public int Absences;
+//    private string Name;
+//    public int Grade { get; private set; }
+//    public int Absences { get; private set; }
 
 //    public Student(string name, int grade, int absences)
 //    {
@@ -15,7 +15,7 @@ using System.Linq;
 //        Absences = absences;
 //    }
 
-//    public override string ToString()
+//    public string ToString()
 //    {
 //        return $"Студент: {Name}, Оценка: {Grade}, Пропущено занятий: {Absences}";
 //    }
@@ -56,28 +56,50 @@ using System.Linq;
 //2.6
 //struct Driver
 //{
-//    public string LastName;
-//    public int[] Scores;
+//    public string LastName { get; private set; }
+//    private int[] Scores;
+//    private int totalScore;
 
 //    public Driver(string lastName, int[] scores)
 //    {
 //        LastName = lastName;
 //        Scores = scores;
+//        totalScore = -1;
+//        TotalScore();
 //    }
 
 //    public int TotalScore()
 //    {
-//        int total = 0;
-//        foreach (int score in Scores)
+//        if (totalScore == -1)
 //        {
-//            total += score;
+//            totalScore = 0;
+//            foreach (int score in Scores)
+//            {
+//                totalScore += score;
+//            }
 //        }
-//        return total;
+//        return totalScore;
 //    }
 
 //    public void PrintInfo()
 //    {
 //        Console.WriteLine($"Фамилия: {LastName}, Результаты: [{string.Join(", ", Scores)}]");
+//    }
+
+//    public static Driver Winner(Driver[] drivers)
+//    {
+//        Driver winner = drivers[0];
+//        int maxTotalScore = winner.TotalScore();
+//        for (int i = 1; i < drivers.Length; i++)
+//        {
+//            int curTotalScore = drivers[i].totalScore;
+//            if (curTotalScore > maxTotalScore)
+//            {
+//                winner = drivers[i];
+//                maxTotalScore = curTotalScore;
+//            }
+//        }
+//        return winner;
 //    }
 //}
 
@@ -92,14 +114,12 @@ using System.Linq;
 
 //    public void GenerateProtocol()
 //    {
-//        // Вывод информации о каждом участнике
 //        foreach (var driver in drivers)
 //        {
 //            driver.PrintInfo();
 //        }
 
-//        // Определение победителя
-//        Driver winner = drivers.OrderByDescending(d => d.TotalScore()).First();
+//        Driver winner = Driver.Winner(drivers);
 //        Console.WriteLine($"Победитель - {winner.LastName} с общим результатом {winner.TotalScore()} баллов.");
 //    }
 //}
@@ -126,8 +146,8 @@ using System.Linq;
 //3.3
 //struct Team
 //{
-//    public string Name;
-//    public int[] Places;
+//    private string Name;
+//    private int[] Places;
 
 //    public Team(string name, int[] places)
 //    {
