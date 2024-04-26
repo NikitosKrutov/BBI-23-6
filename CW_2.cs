@@ -81,7 +81,7 @@ class Task1 : Task
                 }
             }
         }
-        return string.Join(" ", result);
+        return string.Join("\n", result);
     }
 }
 class Task2 : Task
