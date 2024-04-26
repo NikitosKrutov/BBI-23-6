@@ -44,7 +44,6 @@ class Task1 : Task
         startIndex = 0;
         for (int i = 0; i < text.Length; i++)
         {
-            char c = text[i];
             if (numberStarted)
             {
                 if (text[i] == '.' | char.IsDigit(text[i])) { }
