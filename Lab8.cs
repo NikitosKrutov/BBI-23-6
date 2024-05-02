@@ -116,7 +116,7 @@ class Task_6 : Task
     public override string ToString()
     {
         string result = "Task 6:\n";
-        foreach (var entry in syllableCount)
+        foreach (var entry in syllableCount.Where(x => x.Key > 0))
         {
             result += $"{entry.Key}-syllable words: {entry.Value}\n";
         }
@@ -131,13 +131,16 @@ class Task_6 : Task
         foreach (string word in words)
         {
             int syllables = CountS(word);
-            if (syllableCount.ContainsKey(syllables))
+            if (syllables > 0)
             {
-                syllableCount[syllables]++;
-            }
-            else
-            {
-                syllableCount[syllables] = 1;
+                if (syllableCount.ContainsKey(syllables))
+                {
+                    syllableCount[syllables]++;
+                }
+                else
+                {
+                    syllableCount[syllables] = 1;
+                }
             }
         }
     }
@@ -160,13 +163,13 @@ class Task_12 : Task
         string result = "Task 12: Text with word codes:\n";
         foreach (string token in TextArray)
         {
-            if (char.TryParse(token, out char code))
+            if (char.IsLetter(token[0]))
             {
-                result += code;
+                result += token + " ";
             }
             else
             {
-                result += token + " ";
+                result += token;
             }
         }
         return result;
@@ -207,6 +210,7 @@ class Task_12 : Task
         }
     }
 }
+
 class Task_13 : Task
 {
     private Dictionary<char, double> fFrequency;
@@ -215,6 +219,7 @@ class Task_13 : Task
 
     public override string ToString()
     {
+        Console.WriteLine('\n');
         string result = "Task 13:\n";
         foreach (var entry in fFrequency)
         {
@@ -232,21 +237,24 @@ class Task_13 : Task
 
         foreach (string word in words)
         {
-            char firsеletter = word[0];
-            if (fFrequency.ContainsKey(firsеletter))
+            if (word.All(char.IsLetter))
             {
-                fFrequency[firsеletter]++;
-            }
-            else
-            {
-                fFrequency[firsеletter] = 1;
+                char firstLetter = char.ToLower(word[0]);
+                if (fFrequency.ContainsKey(firstLetter))
+                {
+                    fFrequency[firstLetter]++;
+                }
+                else
+                {
+                    fFrequency[firstLetter] = 1;
+                }
             }
         }
 
         foreach (var entry in fFrequency.Keys.ToList())
         {
-            char entery = entry;
-            fFrequency[entery] = CalculatePer((int)fFrequency[entery], totalWords);
+            char key = entry;
+            fFrequency[key] = CalculatePer((int)fFrequency[key], totalWords);
         }
     }
 }
