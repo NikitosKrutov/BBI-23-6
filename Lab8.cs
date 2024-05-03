@@ -154,44 +154,39 @@ class Task_6 : Task
 class Task_12 : Task
 {
     private Dictionary<string, char> WordCodes;
-    private List<string> TextArray;
+    private List<string> EncodedText;
+    private List<string> DecodedText;
 
     public Task_12(string text) : base(text) { }
 
     public override string ToString()
     {
-        string result = "Task 12: Text with word codes:\n";
-        Console.WriteLine('\n');
-        foreach (string token in TextArray)
+        string result = "Task 12: Encoded text:\n";
+        foreach (var token in EncodedText)
         {
-            if (char.IsLetter(token[0]))
-            {
-                result += token + " ";
-            }
-            else
-            {
-                result += token;
-            }
+            result += token + " ";
         }
-        result += "\n\nDecoded text:\n";
-        foreach (string token in TextArray)
+
+        result += "\nWord codes:\n";
+        foreach (var kvp in WordCodes)
         {
-            if (char.IsLetter(token[0]))
-            {
-                result += DecodeWord(token) + " ";
-            }
-            else
-            {
-                result += token;
-            }
+            result += $"{kvp.Key}: {kvp.Value}\n";
         }
+
+        result += "\nDecoded text:\n";
+        foreach (var token in DecodedText)
+        {
+            result += token + " ";
+        }
+
         return result;
     }
 
     public override void ParseText()
     {
         WordCodes = new Dictionary<string, char>();
-        TextArray = new List<string>();
+        EncodedText = new List<string>();
+        DecodedText = new List<string>();
 
         string[] words = Text.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
         var wordFrequencies = words.GroupBy(word => word)
@@ -214,25 +209,15 @@ class Task_12 : Task
         {
             if (WordCodes.ContainsKey(word))
             {
-                TextArray.Add(WordCodes[word].ToString());
+                EncodedText.Add(WordCodes[word].ToString());
+                DecodedText.Add(word);
             }
             else
             {
-                TextArray.Add(word);
+                EncodedText.Add(word);
+                DecodedText.Add(word);
             }
         }
-    }
-
-    private string DecodeWord(string code)
-    {
-        foreach (var kvp in WordCodes)
-        {
-            if (kvp.Value.ToString() == code)
-            {
-                return kvp.Key;
-            }
-        }
-        return code;
     }
 }
 
