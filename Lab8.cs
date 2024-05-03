@@ -161,11 +161,24 @@ class Task_12 : Task
     public override string ToString()
     {
         string result = "Task 12: Text with word codes:\n";
+        Console.WriteLine('\n');
         foreach (string token in TextArray)
         {
             if (char.IsLetter(token[0]))
             {
                 result += token + " ";
+            }
+            else
+            {
+                result += token;
+            }
+        }
+        result += "\n\nDecoded text:\n";
+        foreach (string token in TextArray)
+        {
+            if (char.IsLetter(token[0]))
+            {
+                result += DecodeWord(token) + " ";
             }
             else
             {
@@ -209,6 +222,18 @@ class Task_12 : Task
             }
         }
     }
+
+    private string DecodeWord(string code)
+    {
+        foreach (var kvp in WordCodes)
+        {
+            if (kvp.Value.ToString() == code)
+            {
+                return kvp.Key;
+            }
+        }
+        return code;
+    }
 }
 
 class Task_13 : Task
@@ -219,7 +244,6 @@ class Task_13 : Task
 
     public override string ToString()
     {
-        Console.WriteLine('\n');
         string result = "Task 13:\n";
         foreach (var entry in fFrequency)
         {
