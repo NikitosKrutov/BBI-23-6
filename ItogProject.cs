@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 public abstract partial class Festival
 {
@@ -12,11 +13,29 @@ public abstract partial class Festival
     public decimal TotalAmount { get; set; }
     public decimal TicketPrice { get; set; }
 
+    public Festival(string name, string location, DateTime startDate, DateTime endDate, decimal ticketPrice)
+    {
+        Name = name;
+        Location = location;
+        StartDate = startDate;
+        EndDate = endDate;
+        TicketPrice = ticketPrice;
+        TotalAmount = CalculatePrice();
+    }
+
     public abstract decimal CalculatePrice();
+
     public override string ToString()
     {
-        return $"Name: {Name}, Location: {Location}, Start Date: {StartDate}, End Date: {EndDate}, Total Amount: {TotalAmount:C}, Ticket Price: {TicketPrice:C}";
+        return $"Name: {Name}, Location: {Location}, Start Date: {StartDate:yyyy-MM-dd}, End Date: {EndDate:yyyy-MM-dd}, Total Amount: {TotalAmount:C}, Ticket Price: {TicketPrice:C}";
     }
+}
+
+public partial class Festival : ICounter
+{
+    public int DailyFlow { get; set; }
+    public decimal Revenue { get; set; }
+    public decimal DailyRevenue { get; set; }
 }
 
 public class MusicFestival : Festival
@@ -24,9 +43,16 @@ public class MusicFestival : Festival
     public string Headliner { get; set; }
     public int NumberOfBands { get; set; }
 
+    public MusicFestival(string name, string location, DateTime startDate, DateTime endDate, decimal ticketPrice, string headliner, int numberOfBands)
+        : base(name, location, startDate, endDate, ticketPrice)
+    {
+        Headliner = headliner;
+        NumberOfBands = numberOfBands;
+    }
+
     public override decimal CalculatePrice()
     {
-        return TicketPrice * (EndDate - StartDate).Days;
+        return TicketPrice * NumberOfBands * (EndDate - StartDate).Days;
     }
 }
 
@@ -35,9 +61,16 @@ public class ComicsFestival : Festival
     public string MainCharacter { get; set; }
     public int NumberOfIssues { get; set; }
 
+    public ComicsFestival(string name, string location, DateTime startDate, DateTime endDate, decimal ticketPrice, string mainCharacter, int numberOfIssues)
+        : base(name, location, startDate, endDate, ticketPrice)
+    {
+        MainCharacter = mainCharacter;
+        NumberOfIssues = numberOfIssues;
+    }
+
     public override decimal CalculatePrice()
     {
-        return TicketPrice * NumberOfIssues;
+        return TicketPrice * NumberOfIssues * (EndDate - StartDate).Days;
     }
 }
 
@@ -46,9 +79,16 @@ public class FoodFestival : Festival
     public string CuisineType { get; set; }
     public int NumberOfVendors { get; set; }
 
+    public FoodFestival(string name, string location, DateTime startDate, DateTime endDate, decimal ticketPrice, string cuisineType, int numberOfVendors)
+        : base(name, location, startDate, endDate, ticketPrice)
+    {
+        CuisineType = cuisineType;
+        NumberOfVendors = numberOfVendors;
+    }
+
     public override decimal CalculatePrice()
     {
-        return TicketPrice * NumberOfVendors;
+        return TicketPrice * NumberOfVendors * (EndDate - StartDate).Days;
     }
 }
 
@@ -59,30 +99,23 @@ public interface ICounter
     decimal DailyRevenue { get; set; }
 }
 
-public partial class Festival : ICounter
-{
-    public int DailyFlow { get; set; }
-    public decimal Revenue { get; set; }
-    public decimal DailyRevenue { get; set; }
-}
-
 public class FestivalCalendar
 {
-    private List<Festival> festivals;
+    public List<Festival> Festivals { get; set; }
 
     public FestivalCalendar()
     {
-        festivals = new List<Festival>();
+        Festivals = new List<Festival>();
     }
 
     public void AddFestival(Festival festival)
     {
-        festivals.Add(festival);
+        Festivals.Add(festival);
     }
 
     public void ShowFestivals()
     {
-        foreach (var festival in festivals)
+        foreach (var festival in Festivals)
         {
             Console.WriteLine(festival);
         }
@@ -90,7 +123,7 @@ public class FestivalCalendar
 
     public void ShowFestivals(DateTime startDate)
     {
-        foreach (var festival in festivals)
+        foreach (var festival in Festivals)
         {
             if (festival.StartDate >= startDate)
             {
@@ -101,7 +134,7 @@ public class FestivalCalendar
 
     public void ShowFestivals(DateTime startDate, DateTime endDate)
     {
-        foreach (var festival in festivals)
+        foreach (var festival in Festivals)
         {
             if (festival.StartDate >= startDate && festival.EndDate <= endDate)
             {
@@ -122,61 +155,78 @@ public class MyJsonSerializer : MySerializer
     public override void Read(string fileName)
     {
         string jsonString = File.ReadAllText(fileName);
-        FestivalCalendar calendar = JsonSerializer.Deserialize<FestivalCalendar>(jsonString);
+        List<Festival> festivals = JsonSerializer.Deserialize<List<Festival>>(jsonString, new JsonSerializerOptions
+        {
+            Converters = { new FestivalConverter() }
+        });
+
+        FestivalCalendar calendar = new FestivalCalendar();
+        foreach (var festival in festivals)
+        {
+            calendar.AddFestival(festival);
+        }
         calendar.ShowFestivals();
     }
 
     public override void Write(FestivalCalendar calendar, string fileName)
     {
-        string jsonString = JsonSerializer.Serialize(calendar);
+        string jsonString = JsonSerializer.Serialize(calendar.Festivals, new JsonSerializerOptions
+        {
+            Converters = { new FestivalConverter() },
+            WriteIndented = true
+        });
         File.WriteAllText(fileName, jsonString);
     }
 }
 
-class Program
+public class FestivalConverter : JsonConverter<Festival>
+{
+    public override Festival Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        using (JsonDocument doc = JsonDocument.ParseValue(ref reader))
+        {
+            JsonElement element = doc.RootElement;
+            string type = element.GetProperty("Type").GetString();
+            switch (type)
+            {
+                case nameof(MusicFestival):
+                    return JsonSerializer.Deserialize<MusicFestival>(element.GetRawText(), options);
+                case nameof(ComicsFestival):
+                    return JsonSerializer.Deserialize<ComicsFestival>(element.GetRawText(), options);
+                case nameof(FoodFestival):
+                    return JsonSerializer.Deserialize<FoodFestival>(element.GetRawText(), options);
+                default:
+                    throw new NotSupportedException($"Unknown type: {type}");
+            }
+        }
+    }
+
+    public override void Write(Utf8JsonWriter writer, Festival value, JsonSerializerOptions options)
+    {
+        writer.WriteStartObject();
+        writer.WriteString("Type", value.GetType().Name);
+        writer.WritePropertyName("Data");
+        JsonSerializer.Serialize(writer, (object)value, options);
+        writer.WriteEndObject();
+    }
+}
+
+public class Program
 {
     static void Main(string[] args)
     {
-        MusicFestival musicFestival1 = new MusicFestival
+        var festivals = new List<Festival>
         {
-            Name = "RockFest",
-            Location = "New York",
-            StartDate = new DateTime(2024, 6, 1),
-            EndDate = new DateTime(2024, 6, 3),
-            TotalAmount = 50000,
-            TicketPrice = 50,
-            Headliner = "Metallica",
-            NumberOfBands = 10
-        };
-
-        ComicsFestival comicsFestival1 = new ComicsFestival
-        {
-            Name = "ComicCon",
-            Location = "San Diego",
-            StartDate = new DateTime(2024, 7, 10),
-            EndDate = new DateTime(2024, 7, 12),
-            TotalAmount = 100000,
-            TicketPrice = 100,
-            MainCharacter = "Spider-Man",
-            NumberOfIssues = 20
-        };
-
-        FoodFestival foodFestival1 = new FoodFestival
-        {
-            Name = "Taste of Chicago",
-            Location = "Chicago",
-            StartDate = new DateTime(2024, 8, 15),
-            EndDate = new DateTime(2024, 8, 17),
-            TotalAmount = 80000,
-            TicketPrice = 20,
-            CuisineType = "American",
-            NumberOfVendors = 50
+            new MusicFestival("RockFest", "New York", new DateTime(2024, 6, 1), new DateTime(2024, 6, 3), 50, "Band A", 5),
+            new ComicsFestival("ComicCon", "San Diego", new DateTime(2023, 4, 10), new DateTime(2023, 4, 12), 100, "Character A", 10),
+            new FoodFestival("Taste of Chicago", "Chicago", new DateTime(2021, 8, 15), new DateTime(2021, 8, 17), 20, "Cuisine A", 15)
         };
 
         FestivalCalendar calendar = new FestivalCalendar();
-        calendar.AddFestival(musicFestival1);
-        calendar.AddFestival(comicsFestival1);
-        calendar.AddFestival(foodFestival1);
+        foreach (var festival in festivals)
+        {
+            calendar.AddFestival(festival);
+        }
 
         MyJsonSerializer jsonSerializer = new MyJsonSerializer();
         jsonSerializer.Write(calendar, "raw_data.json");
@@ -184,12 +234,10 @@ class Program
         Console.WriteLine("All Festivals:");
         calendar.ShowFestivals();
 
-        Console.WriteLine("\nFestivals from 01.07.2024:");
-        calendar.ShowFestivals(new DateTime(2024, 7, 1));
+        Console.WriteLine("\nFestivals from 01.04.2023:");
+        calendar.ShowFestivals(new DateTime(2023, 4, 1));
 
-        Console.WriteLine("\nFestivals from 01.07.2024 to 30.07.2024:");
-        calendar.ShowFestivals(new DateTime(2024, 7, 1), new DateTime(2024, 7, 30));
-
-        jsonSerializer.Read("raw_data.json");
+        Console.WriteLine("\nFestivals from 20.05.2020 to 21.09.2021:");
+        calendar.ShowFestivals(new DateTime(2020, 5, 20), new DateTime(2021, 9, 21));
     }
 }

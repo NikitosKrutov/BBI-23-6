@@ -1,1 +1,50 @@
-{}
+[
+  {
+    "Type": "MusicFestival",
+    "Data": {
+      "Headliner": "Band A",
+      "NumberOfBands": 5,
+      "Name": "RockFest",
+      "Location": "New York",
+      "StartDate": "2024-06-01T00:00:00",
+      "EndDate": "2024-06-03T00:00:00",
+      "TotalAmount": 0,
+      "TicketPrice": 50,
+      "DailyFlow": 0,
+      "Revenue": 0,
+      "DailyRevenue": 0
+    }
+  },
+  {
+    "Type": "ComicsFestival",
+    "Data": {
+      "MainCharacter": "Character A",
+      "NumberOfIssues": 10,
+      "Name": "ComicCon",
+      "Location": "San Diego",
+      "StartDate": "2023-04-10T00:00:00",
+      "EndDate": "2023-04-12T00:00:00",
+      "TotalAmount": 0,
+      "TicketPrice": 100,
+      "DailyFlow": 0,
+      "Revenue": 0,
+      "DailyRevenue": 0
+    }
+  },
+  {
+    "Type": "FoodFestival",
+    "Data": {
+      "CuisineType": "Cuisine A",
+      "NumberOfVendors": 15,
+      "Name": "Taste of Chicago",
+      "Location": "Chicago",
+      "StartDate": "2021-08-15T00:00:00",
+      "EndDate": "2021-08-17T00:00:00",
+      "TotalAmount": 0,
+      "TicketPrice": 20,
+      "DailyFlow": 0,
+      "Revenue": 0,
+      "DailyRevenue": 0
+    }
+  }
+]
