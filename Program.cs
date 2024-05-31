@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Xml.Serialization;
 using Classes;
 using Serializers;
@@ -24,7 +23,7 @@ public class Program
             int y2 = r.Next(y1 + 1, 2024);
             int m2 = r.Next(m1 + 1, 12);
             int d2 = r.Next(d1 + 1, 29);
-            festivals.Add(new MusicFestival(names[r.Next(0, names.Length - 1)], cities[r.Next(0, cities.Length - 1)], new DateTime(y1, m1, d1), new DateTime(y2, m2, d2), r.Next(10, 30), stars[r.Next(0, stars.Length - 1)], r.Next(1, 10)));
+            festivals.Add(new MusicFestival(names[r.Next(0, names.Length - 1)], cities[r.Next(0, cities.Length-1)], new DateTime(y1, m1, d1), new DateTime(y2, m2, d2), r.Next(10, 30), stars[r.Next(0, stars.Length - 1)], r.Next(1,10)));
         }
         for (int i = 0; i < 10; i++)
         {
@@ -81,8 +80,8 @@ public class Program
 
         MyXmlSerializer xmlSerializer = new MyXmlSerializer();
         int[] comicsIndexes = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
-        Random.Shared.Shuffle(comicsIndexes);
-        for (int i = 0; i < 5; i++)
+        // Random.Shared.Shuffle(comicsIndexes); этот метод берет 5 случайных чисел, он работает только с версии .NET8, можно убрать
+        for (int i = 0; i < 5; i++) 
         {
             int y1 = r.Next(2020, 2024);
             int m1 = r.Next(1, 12);
