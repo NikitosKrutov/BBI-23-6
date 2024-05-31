@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Linq;
@@ -35,7 +35,6 @@ namespace Classes
             StartDate = startDate;
             EndDate = endDate;
             TicketPrice = ticketPrice;
-            TotalAmount = CalculatePrice();
         }
         public Festival() { }
 
@@ -43,7 +42,7 @@ namespace Classes
 
         public override string ToString()
         {
-            return $"Name: {Name}, Location: {Location}, Start Date: {StartDate:yyyy-MM-dd}, End Date: {EndDate:yyyy-MM-dd}, Total Amount: {TotalAmount:C}, Ticket Price: {TicketPrice:C}";
+            return $"Name: {Name}, Location: {Location}, Start Date: {StartDate:yyyy-MM-dd}, End Date: {EndDate:yyyy-MM-dd}, Total Amount: {TotalAmount} Rub, Ticket Price: {TicketPrice} Rub";
         }
     }
 
@@ -60,6 +59,7 @@ namespace Classes
         {
             Headliner = headliner;
             NumberOfBands = numberOfBands;
+            TotalAmount = CalculatePrice();
         }
 
         public override decimal CalculatePrice()
@@ -80,6 +80,7 @@ namespace Classes
         {
             MainCharacter = mainCharacter;
             NumberOfIssues = numberOfIssues;
+            TotalAmount = CalculatePrice();
         }
 
         public ComicsFestival(DateTime startDate, DateTime endDate, Festival festival, string mainCharacter, int numberOfIssues)
@@ -118,6 +119,7 @@ namespace Classes
         {
             CuisineType = cuisineType;
             NumberOfVendors = numberOfVendors;
+            TotalAmount = CalculatePrice();
         }
 
         public override decimal CalculatePrice()
